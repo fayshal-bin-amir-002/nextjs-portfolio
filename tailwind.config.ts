@@ -13,10 +13,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         main: {
-          DEFAULT: "#C4B5FD",
-          light: "#EDE9FE",
-          medium: "#DDD6FE",
-          dark: "#A78BFA",
+          DEFAULT: "#A78BFA",
+          medium: "#C4B5FD",
+          light: "#DDD6FE",
         },
       },
       borderRadius: {

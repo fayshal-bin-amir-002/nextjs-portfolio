@@ -30,7 +30,7 @@ const NavBar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="py-4">
+    <nav className="py-4 border-b border-main-light sticky top-0 z-50 bg-white dark:bg-black">
       <Container>
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center gap-4">
@@ -49,8 +49,8 @@ const NavBar = () => {
                   href={href}
                   className={`${
                     pathname === href
-                      ? "text-main-dark font-medium duration-200"
-                      : "hover:text-main-dark duration-200"
+                      ? "text-main font-medium duration-200"
+                      : "hover:text-main duration-200"
                   }`}
                 >
                   {label}

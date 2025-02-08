@@ -1,9 +1,10 @@
-import { Button } from "@/components/ui/button";
+import Banner from "@/components/home/banner/Banner";
+import Container from "@/components/shared/Container";
 
 export default function Home() {
   return (
-    <div>
-      <Button>Click me</Button>
-    </div>
+    <Container>
+      <Banner />
+    </Container>
   );
 }
