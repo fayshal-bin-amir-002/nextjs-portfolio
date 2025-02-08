@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider/theme-provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Fayshal Bin Amir | Web Developer",
@@ -32,6 +33,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <Toaster richColors position="top-left" />
       </body>
     </html>
   );

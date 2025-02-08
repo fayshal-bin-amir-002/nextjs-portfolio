@@ -1,7 +1,15 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-const FeaturedProjectCard = ({ project }: { project: any }) => {
+const FeaturedProjectCard = ({
+  project,
+}: {
+  project: {
+    title: string;
+    description: string;
+    image: string;
+  };
+}) => {
   return (
     <div className="w-full h-[370px] relative overflow-hidden group cursor-pointer rounded-lg shadow-lg bg-main-light bg-opacity-30 border border-main-light">
       {/*  image  */}
