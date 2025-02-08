@@ -1,3 +1,4 @@
+import SectionTitle from "@/components/shared/SectionTitle";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
@@ -55,10 +56,8 @@ const SkillsSection = () => {
   ];
 
   return (
-    <div className="overflow-hidden mt-6">
-      <h1 className="text-4xl md:text-5xl font-semibold text-main text-center mb-6 md:mb-10 lg:mb-12">
-        Skills
-      </h1>
+    <div>
+      <SectionTitle title="Skills" />
       <div className="space-y-8">
         <Marquee autoFill={true} pauseOnHover={true}>
           {skillData.map((item, index) => (
@@ -66,7 +65,7 @@ const SkillsSection = () => {
               key={index}
               className="flex flex-col items-center justify-center size-[180px] lg:mx-6"
             >
-              <div className="size-[140px] bg-main-light bg-opacity-30 dark:bg-white rounded-full flex items-center justify-center">
+              <div className="size-[140px] bg-main-light bg-opacity-30 dark:bg-white rounded-full flex items-center justify-center p-4">
                 <Image
                   src={item.image}
                   alt={item.name}
@@ -87,7 +86,7 @@ const SkillsSection = () => {
               key={index}
               className="flex flex-col items-center justify-center size-[180px] lg:mx-6"
             >
-              <div className="size-[140px] bg-main-light bg-opacity-30 dark:bg-white rounded-full flex items-center justify-center">
+              <div className="size-[140px] bg-main-light bg-opacity-30 dark:bg-white rounded-full flex items-center justify-center p-4">
                 <Image
                   src={item.image}
                   alt={item.name}

@@ -6,7 +6,7 @@ import AnimatedText from "./AnimatedText";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between items-center gap-8 my-8 md:my-10 lg:my-12">
+    <div className="flex flex-col lg:flex-row justify-between items-center gap-8 my-10 md:my-16 lg:my-20">
       <div className="lg:w-1/2">
         <AnimatedText />
         <h3 className="text-3xl md:text-5xl mb-4 md:mb-6">
@@ -20,7 +20,13 @@ const Banner = () => {
           technologies, I create seamless web experiences tailored to your
           needs. Let's build something amazing together!
         </p>
-        <Button size={"lg"}>View Resume</Button>
+        <Button
+          size={"lg"}
+          variant={"outline"}
+          className="hover:scale-105 duration-300 ease-in-out"
+        >
+          View Resume
+        </Button>
       </div>
       <div>
         <Image src={bannerImage} width={400} height={400} alt="banner-image" />
