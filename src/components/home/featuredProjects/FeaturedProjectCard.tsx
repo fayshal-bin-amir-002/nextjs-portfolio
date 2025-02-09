@@ -1,40 +1,44 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { TFeaturedProject } from "./FeaturedProjects";
+import { Rocket } from "lucide-react";
+import Link from "next/link";
 
-const FeaturedProjectCard = ({
-  project,
-}: {
-  project: {
-    title: string;
-    description: string;
-    image: string;
-  };
-}) => {
+const FeaturedProjectCard = ({ project }: { project: TFeaturedProject }) => {
   return (
-    <div className="w-full h-[370px] relative overflow-hidden group cursor-pointer rounded-lg shadow-lg bg-main-light bg-opacity-30 border border-main-light">
-      {/*  image  */}
-      <Image
-        src={project?.image}
-        alt="animated_card"
-        fill
-        className="w-full h-full object-top object-cover group-hover:scale-[1.1] transition-all duration-700"
-      />
+    <div className="border border-main-light rounded-lg bg-main overflow-hidden group">
+      <div className="w-full h-[370px] relative overflow-hidden cursor-pointer  shadow-lg bg-main-light bg-opacity-30">
+        {/*  image  */}
+        <Image
+          priority
+          src={project?.image}
+          alt="animated_card"
+          fill
+          sizes="100%"
+          className="w-full h-full object-top object-cover group-hover:scale-[1.1] transition-all duration-700"
+        />
 
-      {/*  text  */}
-      <div className="absolute top-[50%] transform group-hover:translate-y-[-50%] transition-all duration-500 w-full h-full left-0 z-20 right-0 flex items-center justify-center flex-col p-2">
-        <h1 className="text-2xl font-medium text-center capitalize mb-3 text-main bg-white w-full py-2 rounded-lg  group-hover:text-black group-hover:bg-transparent border border-main-light">
-          {project?.title}
-        </h1>
-        <p className="text-center z-[1-] opacity-0 group-hover:z-20 group-hover:opacity-90 transition-all duration-700 text-[0.9rem] mb-6 dark:text-black">
-          {project?.description}
-        </p>
-        <Button className=" z-[1-] opacity-0 group-hover:z-20 group-hover:opacity-100  transition-all duration-300 bg-main hover:bg-main-medium">
-          View Details
-        </Button>
+        {/*  text  */}
+        <div className="absolute top-[100%] transform group-hover:top-0 transition-all duration-500 w-full h-full left-0 z-20 right-0 flex items-center justify-center flex-col px-4">
+          <h1 className="text-2xl font-medium text-center capitalize mb-3 ">
+            {project?.title}
+          </h1>
+          <p className="z-[1-] opacity-0 group-hover:z-20 group-hover:opacity-90 transition-all duration-700 text-[0.9rem] mb-6 dark:text-black text-justify">
+            {project?.description}
+          </p>
+        </div>
+
+        {/*  bottom shadow  */}
+        <div className="w-full opacity-0 z-[-1] group-hover:opacity-100 group-hover:z-10 transition-all duration-500 bg-main-light h-[100%] absolute bottom-0 left-0 right-0"></div>
       </div>
-
-      {/*  bottom shadow  */}
-      <div className="w-full opacity-0 z-[-1] group-hover:opacity-100 group-hover:z-10 transition-all duration-500 bg-main-light h-[100%] absolute bottom-0 left-0 right-0"></div>
+      <Link href={project?.live_link} target="_blank">
+        <Button
+          size={"lg"}
+          className="transition-all duration-300 bg-main hover:bg-main w-full text-lg font-normal"
+        >
+          View Website <Rocket color="white" />
+        </Button>
+      </Link>
     </div>
   );
 };
