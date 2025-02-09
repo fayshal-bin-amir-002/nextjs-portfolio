@@ -1,3 +1,4 @@
+import BlogEditModal from "@/components/dashboard/blog/BlogEditModal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -10,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { TBlog } from "@/types/blog.type";
 import { FilePenLine, FilePlus, Trash2 } from "lucide-react";
+import Link from "next/link";
 
 const BlogManagement = async () => {
   const res = await fetch("http://localhost:3500/api/blogs");
@@ -20,9 +22,11 @@ const BlogManagement = async () => {
     <div>
       <div className="flex justify-between items-center my-6">
         <h1 className="text-2xl font-bold">Blog Management</h1>
-        <Button variant="outline">
-          <FilePlus /> Add New Blog
-        </Button>
+        <Link href="/dashboard/blog-management/post-blog">
+          <Button variant="outline">
+            <FilePlus /> Add New Blog
+          </Button>
+        </Link>
       </div>
       <Card className="mt-6">
         <CardContent className="pt-6">
@@ -57,9 +61,7 @@ const BlogManagement = async () => {
                     </TableCell>
                     <TableCell className="md:table-cell block before:content-['Actions'] before:font-bold before:text-slate-700 before:block md:before:content-none md:before:inline cursor-pointer ">
                       <div className="flex justify-start items-center gap-4">
-                        <Button size="icon" variant="outline">
-                          <FilePenLine color="green" strokeWidth={2} />
-                        </Button>
+                        <BlogEditModal blog={blog} />
                         <Button size="icon" variant="outline">
                           <Trash2 color="red" strokeWidth={2} />
                         </Button>

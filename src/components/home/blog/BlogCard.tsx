@@ -9,7 +9,7 @@ const BlogCard = ({ blog }: { blog: TBlog }) => {
 
   return (
     <Link href={`/blogs/${blog?._id}`} className="group">
-      <div className="w-full shadow-lg bg-white rounded-lg border border-main-light">
+      <div className="w-full h-full shadow-lg bg-white rounded-lg border border-main-light">
         <div className="flex w-full justify-between items-center p-4">
           <div className="flex items-center gap-4">
             <div className="w-[50px] h-[50px] flex items-center justify-center text-secondary text-[1.3rem] rounded-full overflow-hidden">

@@ -35,7 +35,6 @@ import MultiSelect from "@/components/dashboard/project/MultiSelect";
 import { X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { createProject } from "@/actions/createProject";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { updateProject } from "@/actions/updateProject";
@@ -81,7 +80,6 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
     try {
       // console.log(payload);
       const res = await updateProject(project?._id, payload);
-      console.log(res);
 
       toast.success("Project updated successfully.");
       router.push("/dashboard/project-management");
