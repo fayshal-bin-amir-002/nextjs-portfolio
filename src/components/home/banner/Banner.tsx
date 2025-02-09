@@ -2,6 +2,7 @@ import Image from "next/image";
 import bannerImage from "@/assets/bannerImage.png";
 import { Button } from "@/components/ui/button";
 import AnimatedText from "./AnimatedText";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -19,13 +20,18 @@ const Banner = () => {
           technologies, I create seamless web experiences tailored to your
           needs. Let&apos;s build something amazing together!
         </p>
-        <Button
-          size={"lg"}
-          variant={"outline"}
-          className="hover:scale-105 duration-300 ease-in-out"
+        <Link
+          href="https://drive.google.com/drive/folders/1lbChe2yHsKnLAZjYB5SBU_kVepdq3sW6?usp=drive_link"
+          target="_blank"
         >
-          View Resume
-        </Button>
+          <Button
+            size={"lg"}
+            variant={"outline"}
+            className="hover:scale-105 duration-300 ease-in-out"
+          >
+            View Resume
+          </Button>
+        </Link>
       </div>
       <div>
         <Image src={bannerImage} width={400} height={400} alt="banner-image" />

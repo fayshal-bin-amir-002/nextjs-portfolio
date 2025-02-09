@@ -1,5 +1,7 @@
 import SectionTitle from "@/components/shared/SectionTitle";
 import FeaturedProjectCard from "./FeaturedProjectCard";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export type TFeaturedProject = {
   _id: string;
@@ -23,6 +25,13 @@ const FeaturedProjects = async () => {
         {featuredProjects?.map((project: TFeaturedProject) => (
           <FeaturedProjectCard key={project?._id} project={project} />
         ))}
+      </div>
+      <div className="text-center mt-6 lg:mt-10">
+        <Link href="/projects">
+          <Button variant="outline" size="lg">
+            View All Projects
+          </Button>
+        </Link>
       </div>
     </div>
   );
