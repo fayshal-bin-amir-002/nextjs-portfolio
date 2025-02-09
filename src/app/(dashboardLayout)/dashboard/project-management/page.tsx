@@ -10,7 +10,7 @@ const ProjectManagementPage = async () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-6">
         <p className="text-2xl font-medium">My Projects</p>
         <Link href="/dashboard/project-management/add-project">
           <Button variant="outline">Add New Project</Button>

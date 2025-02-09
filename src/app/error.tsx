@@ -18,8 +18,9 @@ const ErrorPage = ({
         <p className="text-sm text-gray-600">{error.message}</p>
         <Button
           variant={"outline"}
+          size={"lg"}
           onClick={reset}
-          className="mt-4 w-full px-4 py-2 text-white bg-red-400 rounded-md hover:bg-red-500"
+          className="mt-4 "
         >
           Try again
         </Button>
