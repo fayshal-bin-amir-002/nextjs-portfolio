@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,7 +18,6 @@ import { Input } from "@/components/ui/input";
 import Container from "@/components/shared/Container";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { useActionState } from "react";
 import { createContact } from "@/actions/createContact";
 import { toast } from "sonner";
 
@@ -36,8 +34,6 @@ const formSchema = z.object({
 });
 
 const ContactPage = () => {
-  const [state, action, pending] = useActionState(createContact, false);
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,19 +44,15 @@ const ContactPage = () => {
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    try {
-      await createContact(data);
-      toast.success("Message sent successfully!");
-      form.reset();
-    } catch (err: any) {
-      toast.error(err?.data?.message || "Could not send message");
-    }
+    await createContact(data);
+    toast.success("Message sent successfully!");
+    form.reset();
   }
 
   return (
     <Container>
       <div
-        className="flex justify-between items-center h-[70vh]"
+        className="flex justify-center items-center h-[60vh]"
         suppressHydrationWarning
       >
         <Card className="p-4 md:p-6 w-full md:w-[450px] lg:w-1/2 mx-auto">

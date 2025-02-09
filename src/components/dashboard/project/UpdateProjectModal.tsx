@@ -77,16 +77,12 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
       technologies,
     };
 
-    try {
-      // console.log(payload);
-      const res = await updateProject(project?._id, payload);
+    // console.log(payload);
+    await updateProject(project?._id, payload);
 
-      toast.success("Project updated successfully.");
-      router.push("/dashboard/project-management");
-      setOpen(false);
-    } catch (err: any) {
-      toast.error(err?.data?.message || "Failed to update project");
-    }
+    toast.success("Project updated successfully.");
+    router.push("/dashboard/project-management");
+    setOpen(false);
 
     form.reset();
   };
@@ -102,7 +98,7 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
         <DialogHeader>
           <DialogTitle>Update Project</DialogTitle>
           <DialogDescription>
-            Make changes to your project here. Click save when you're done.
+            Make changes to your project here. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <Card suppressHydrationWarning>
@@ -130,7 +126,7 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
                   <FormField
                     control={form.control}
                     name="image"
-                    render={({ field }) => (
+                    render={() => (
                       <FormItem>
                         <FormLabel>Image</FormLabel>
                         <FormControl>
@@ -181,7 +177,7 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
                       ) => {
                         event.preventDefault();
                         onChange(
-                          value.filter((_: any, i: number) => i !== index)
+                          value.filter((_: unknown, i: number) => i !== index)
                         );
                       };
 

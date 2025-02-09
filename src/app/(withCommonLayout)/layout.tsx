@@ -9,7 +9,7 @@ const CommonLayout = async ({ children }: { children: ReactNode }) => {
   return (
     <div>
       <NavBar session={session} />
-      <div>{children}</div>
+      <div className="min-h-[75vh]">{children}</div>
       <Footer />
     </div>
   );

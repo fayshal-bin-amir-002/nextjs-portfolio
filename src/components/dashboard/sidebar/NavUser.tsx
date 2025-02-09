@@ -1,18 +1,10 @@
 "use client";
 
-import {
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Wallet,
-} from "lucide-react";
+import { ChevronsUpDown, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -26,7 +18,6 @@ import {
 } from "@/components/ui/sidebar";
 import { UserProps } from "@/components/shared/NavBar";
 import { signOut } from "next-auth/react";
-import { use } from "react";
 
 const NavUser = ({ session }: { session: UserProps | null }) => {
   const { isMobile } = useSidebar();

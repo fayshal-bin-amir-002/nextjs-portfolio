@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { TProject } from "@/types/project.type";
 
 export const Card = React.memo(
   ({
@@ -11,7 +12,7 @@ export const Card = React.memo(
     hovered,
     setHovered,
   }: {
-    card: any;
+    card: TProject;
     index: number;
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
@@ -54,12 +55,7 @@ export const Card = React.memo(
 
 Card.displayName = "Card";
 
-type Card = {
-  title: string;
-  src: string;
-};
-
-export function FocusCards({ cards }: { cards: Card[] }) {
+export function FocusCards({ cards }: { cards: TProject[] }) {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (

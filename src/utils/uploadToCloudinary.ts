@@ -9,23 +9,19 @@ export const uploadToCloudinary = async (
   formData.append("file", file);
   formData.append("upload_preset", "ImageUpload"); // Replace with your preset
 
-  try {
-    const response = await fetch(
-      "https://api.cloudinary.com/v1_1/dogemgxf1/image/upload",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error?.message || "Image upload failed");
+  const response = await fetch(
+    "https://api.cloudinary.com/v1_1/dogemgxf1/image/upload",
+    {
+      method: "POST",
+      body: formData,
     }
+  );
 
-    return data.secure_url; // Return the uploaded image URL
-  } catch (error) {
-    return null;
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error?.message || "Image upload failed");
   }
+
+  return data.secure_url || null; // Return the uploaded image URL
 };

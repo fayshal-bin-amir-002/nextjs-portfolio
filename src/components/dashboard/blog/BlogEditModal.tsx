@@ -10,15 +10,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { TProject } from "@/types/project.type";
 import { FilePenLine } from "lucide-react";
 
-import {
-  Controller,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -28,24 +22,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
 import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
 import { ChangeEvent, useState } from "react";
 
-import MultiSelect from "@/components/dashboard/project/MultiSelect";
-import { X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { Checkbox } from "@/components/ui/checkbox";
-import { updateProject } from "@/actions/updateProject";
 import { updateBlog } from "@/actions/updateBlog";
 
 const BlogEditModal = ({ blog }: { blog: TBlog }) => {
   const [open, setOpen] = useState(false);
 
   const [file, setFile] = useState<File | null>(null);
-  const [technologies, setTechnologies] = useState<string[]>([]);
 
   const router = useRouter();
 
@@ -70,20 +58,15 @@ const BlogEditModal = ({ blog }: { blog: TBlog }) => {
     const payload = {
       ...data,
       image: img || blog?.image,
-      technologies,
     };
 
-    try {
-      // console.log(payload);
+    // console.log(payload);
 
-      await updateBlog(blog?._id, payload);
+    await updateBlog(blog?._id, payload);
 
-      toast.success("Blog updated successfully.");
-      router.push("/dashboard/blog-management");
-      setOpen(false);
-    } catch (err: any) {
-      toast.error(err?.data?.message || "Failed to update blog");
-    }
+    toast.success("Blog updated successfully.");
+    router.push("/dashboard/blog-management");
+    setOpen(false);
 
     form.reset();
   };
@@ -98,7 +81,7 @@ const BlogEditModal = ({ blog }: { blog: TBlog }) => {
         <DialogHeader>
           <DialogTitle>Update Blog</DialogTitle>
           <DialogDescription>
-            Make changes to your blog here. Click save when you're done.
+            Make changes to your blog here. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <div className="p-4">
@@ -125,7 +108,7 @@ const BlogEditModal = ({ blog }: { blog: TBlog }) => {
                 <FormField
                   control={form.control}
                   name="image"
-                  render={({ field }) => (
+                  render={() => (
                     <FormItem>
                       <FormLabel>Image</FormLabel>
                       <FormControl>

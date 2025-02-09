@@ -20,6 +20,11 @@ export const technologies = [
   "Ant Design",
 ];
 
+type TechnologyOption = {
+  id: number;
+  name: string;
+};
+
 const MultiSelect = ({
   setTechnologies,
   defaultTechnologies,
@@ -27,25 +32,24 @@ const MultiSelect = ({
   setTechnologies: React.Dispatch<React.SetStateAction<string[]>>;
   defaultTechnologies?: string[];
 }) => {
-  const [searchValue, setSearchValue] = useState("");
-  const [isOpenDropdown, setIsOpenDropdown] = useState(false);
-
-  const [selectedOptions, setSelectedOptions] = useState<any[]>(
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
+  const [selectedOptions, setSelectedOptions] = useState<TechnologyOption[]>(
     defaultTechnologies && defaultTechnologies.length > 0
-      ? defaultTechnologies
+      ? (defaultTechnologies
           .map((tech) => {
             const techIndex = technologies.indexOf(tech);
             return techIndex >= 0
               ? { id: techIndex + 1, name: technologies[techIndex] }
               : null;
           })
-          .filter(Boolean)
-      : [] // Set to an empty array if no defaultTechnologies
+          .filter(Boolean) as TechnologyOption[])
+      : []
   );
 
   // Mapping technologies to options with id
-  const options = technologies.map((tech, index) => ({
-    id: index + 1, // Auto incrementing id starting from 1
+  const options: TechnologyOption[] = technologies.map((tech, index) => ({
+    id: index + 1, // Auto-incrementing id starting from 1
     name: tech,
   }));
 
@@ -55,13 +59,13 @@ const MultiSelect = ({
   );
 
   // Checking if a technology is selected
-  const isSelected = (item: any) => {
+  const isSelected = (item: TechnologyOption) => {
     return selectedOptions.some((selectedItem) => selectedItem.id === item.id);
   };
 
   // Toggling the selection of a technology
-  const toggleSelectItem = (item: any) => {
-    let updatedSelectedOptions;
+  const toggleSelectItem = (item: TechnologyOption) => {
+    let updatedSelectedOptions: TechnologyOption[];
     if (isSelected(item)) {
       updatedSelectedOptions = selectedOptions.filter(
         (selectedItem) => selectedItem.id !== item.id
@@ -76,7 +80,7 @@ const MultiSelect = ({
   };
 
   // Removing selected technology
-  const removeItem = (option: any) => {
+  const removeItem = (option: TechnologyOption) => {
     const updatedSelectedOptions = selectedOptions.filter(
       (selectedItem) => selectedItem.id !== option.id
     );

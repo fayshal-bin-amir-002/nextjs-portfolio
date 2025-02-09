@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { TBlog } from "@/types/blog.type";
-import { FilePenLine, FilePlus, Trash2 } from "lucide-react";
+import { FilePlus, Trash2 } from "lucide-react";
 import Link from "next/link";
 
 const BlogManagement = async () => {

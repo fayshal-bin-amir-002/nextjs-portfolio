@@ -1,6 +1,13 @@
 "use server";
 
-export const postBlog = async (data: any) => {
+type TBlog = {
+  title: string;
+  image: string;
+  description: string;
+  content: string;
+};
+
+export const postBlog = async (data: TBlog) => {
   const res = await fetch("http://localhost:3500/api/blogs", {
     method: "POST",
     headers: {

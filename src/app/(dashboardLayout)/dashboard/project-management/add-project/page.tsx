@@ -27,6 +27,7 @@ import { toast } from "sonner";
 import { createProject } from "@/actions/createProject";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
+import { TProject } from "@/types/project.type";
 
 const AddProjectPage = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -69,15 +70,11 @@ const AddProjectPage = () => {
       technologies,
     };
 
-    try {
-      // console.log(payload);
-      await createProject(payload);
+    // console.log(payload);
+    await createProject(payload as TProject);
 
-      toast.success("Project added successfully.");
-      router.push("/dashboard/project-management");
-    } catch (err: any) {
-      toast.error(err?.data?.message || "Failed to add project");
-    }
+    toast.success("Project added successfully.");
+    router.push("/dashboard/project-management");
 
     // form.reset();
   };
@@ -108,7 +105,7 @@ const AddProjectPage = () => {
               <FormField
                 control={form.control}
                 name="image"
-                render={({ field }) => (
+                render={() => (
                   <FormItem>
                     <FormLabel>Image</FormLabel>
                     <FormControl>
@@ -152,7 +149,9 @@ const AddProjectPage = () => {
                     index: number
                   ) => {
                     event.preventDefault();
-                    onChange(value.filter((_: any, i: number) => i !== index));
+                    onChange(
+                      value.filter((_: unknown, i: number) => i !== index)
+                    );
                   };
 
                   return (

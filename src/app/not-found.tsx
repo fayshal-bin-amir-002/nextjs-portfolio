@@ -1,10 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const NotFoundPage = () => {
   return (
     <div className="boxShadow min-h-screen h-full w-full flex flex-col lg:flex-row justify-between items-center lg:w-3/4 mx-auto">
       <div className="w-full lg:w-1/2">
-        <img
+        <Image
+          width={500}
+          height={500}
           src="https://i.ibb.co/HdHH4Pb/Frame-6.png"
           alt="illustration"
           className="h-full"

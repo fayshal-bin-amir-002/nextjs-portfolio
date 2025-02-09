@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { TContact } from "@/types/message.type";
 
 const ContactMessagePage = async () => {
   const res = await fetch("http://localhost:3500/api/contact");
@@ -27,7 +28,7 @@ const ContactMessagePage = async () => {
           </TableHeader>
           <TableBody>
             {messages &&
-              messages.map((message: any) => (
+              messages.map((message: TContact) => (
                 <TableRow
                   key={message?._id}
                   className="md:table-row flex flex-col border-b"

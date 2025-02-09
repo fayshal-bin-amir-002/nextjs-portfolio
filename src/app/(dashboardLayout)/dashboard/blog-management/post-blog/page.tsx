@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Controller,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -23,6 +18,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { postBlog } from "@/actions/postBlog";
+import { TBlog } from "@/types/blog.type";
 
 const BlogPostPage = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -56,13 +52,9 @@ const BlogPostPage = () => {
       image: img || "",
     };
 
-    try {
-      await postBlog(payload);
-      toast.success("Blog posted successfully.");
-      router.push("/dashboard/blog-management");
-    } catch (err: any) {
-      toast.error(err?.data?.message || "Failed to post blog.");
-    }
+    await postBlog(payload as TBlog);
+    toast.success("Blog posted successfully.");
+    router.push("/dashboard/blog-management");
 
     // form.reset();
   };
@@ -93,7 +85,7 @@ const BlogPostPage = () => {
               <FormField
                 control={form.control}
                 name="image"
-                render={({ field }) => (
+                render={() => (
                   <FormItem>
                     <FormLabel>Image</FormLabel>
                     <FormControl>
