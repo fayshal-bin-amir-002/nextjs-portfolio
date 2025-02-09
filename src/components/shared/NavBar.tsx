@@ -17,6 +17,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import NavSideSheet from "../sheet/NavSideSheet";
+import { signOut } from "next-auth/react";
+
+export type UserProps = {
+  user?: {
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+  };
+};
 
 export const navLinks = [
   { href: "/", label: "Home" },
@@ -26,7 +35,7 @@ export const navLinks = [
   { href: "/dashboard", label: "Dashboard" },
 ];
 
-const NavBar = () => {
+const NavBar = ({ session }: { session: UserProps | null }) => {
   const { setTheme } = useTheme();
   const pathname = usePathname();
 
@@ -81,9 +90,21 @@ const NavBar = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
 
-                <Button variant="outline" className="outline-main">
-                  Login
-                </Button>
+                {session?.user ? (
+                  <Button
+                    variant="outline"
+                    className="outline-main"
+                    onClick={() => signOut()}
+                  >
+                    Log Out
+                  </Button>
+                ) : (
+                  <Link href="/login">
+                    <Button variant="outline" className="outline-main">
+                      Login
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
