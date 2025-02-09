@@ -1,3 +1,4 @@
+import { FocusCards } from "@/components/home/projects/FocusCards";
 import Container from "@/components/shared/Container";
 
 const ProjectsPage = async () => {
@@ -6,11 +7,11 @@ const ProjectsPage = async () => {
 
   const projects = data?.data || [];
 
-  console.log(projects);
-
   return (
     <Container>
-      <p>Hello World!</p>
+      <div className="my-10 lg:my-16">
+        <FocusCards cards={projects} />
+      </div>
     </Container>
   );
 };
