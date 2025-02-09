@@ -22,12 +22,26 @@ export const technologies = [
 
 const MultiSelect = ({
   setTechnologies,
+  defaultTechnologies,
 }: {
   setTechnologies: React.Dispatch<React.SetStateAction<string[]>>;
+  defaultTechnologies?: string[];
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<any[]>([]);
+
+  const [selectedOptions, setSelectedOptions] = useState<any[]>(
+    defaultTechnologies && defaultTechnologies.length > 0
+      ? defaultTechnologies
+          .map((tech) => {
+            const techIndex = technologies.indexOf(tech);
+            return techIndex >= 0
+              ? { id: techIndex + 1, name: technologies[techIndex] }
+              : null;
+          })
+          .filter(Boolean)
+      : [] // Set to an empty array if no defaultTechnologies
+  );
 
   // Mapping technologies to options with id
   const options = technologies.map((tech, index) => ({

@@ -1,9 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TProject } from "@/types/project.type";
-import { FilePenLine, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import UpdateProjectModal from "./UpdateProjectModal";
 
 const ProjectCard = ({ project }: { project: TProject }) => {
   return (
@@ -87,11 +88,7 @@ const ProjectCard = ({ project }: { project: TProject }) => {
         )}
       </div>
       <div className="flex flex-col gap-2 absolute right-1 top-1">
-        <Link href={`/dashboard/project-management/${project?._id}`}>
-          <Button size={"icon"} className="bg-green-500">
-            <FilePenLine color="white" strokeWidth={3} />
-          </Button>
-        </Link>
+        <UpdateProjectModal project={project} />
         <Button size={"icon"} className="bg-red-500">
           <Trash2 color="white" strokeWidth={3} />
         </Button>

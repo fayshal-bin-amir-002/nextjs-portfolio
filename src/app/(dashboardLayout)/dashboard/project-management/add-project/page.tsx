@@ -19,13 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
 import { ChangeEvent, useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import MultiSelect from "@/components/dashboard/project/MultiSelect";
 import { X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -74,9 +68,6 @@ const AddProjectPage = () => {
       image: img || "",
       technologies,
     };
-
-    setFile(null);
-    setTechnologies([]);
 
     try {
       // console.log(payload);
