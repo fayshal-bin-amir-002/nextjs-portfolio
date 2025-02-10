@@ -4,7 +4,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 
 const BlogCard = ({ blog }: { blog: TBlog }) => {
-  const date = new Date("2016-09-14T00:00:00Z");
+  const date = new Date(blog?.createdAt);
   const formattedDate = format(date, "MMMM dd, yyyy");
 
   return (
