@@ -1,3 +1,4 @@
+import BubbleCursor from "@/components/animatedCursor/BubbleCursor";
 import Footer from "@/components/home/footer/Footer";
 import NavBar from "@/components/shared/NavBar";
 import { authOptions } from "@/utils/authOptions";
@@ -20,6 +21,7 @@ const CommonLayout = async ({ children }: { children: ReactNode }) => {
       <NavBar session={session} />
       <div className="min-h-[75vh]">{children}</div>
       <Footer />
+      <BubbleCursor />
     </div>
   );
 };
