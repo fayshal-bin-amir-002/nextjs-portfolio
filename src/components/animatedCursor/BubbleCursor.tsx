@@ -194,7 +194,7 @@ const BubbleCursor: React.FC<BubbleCursorProps> = ({ wrapperElement }) => {
     };
   }, [wrapperElement]);
 
-  return <canvas ref={canvasRef} />;
+  return <canvas ref={canvasRef} className="z-50" />;
 };
 
 export default BubbleCursor;
