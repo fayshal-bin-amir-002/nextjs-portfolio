@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
 import Container from "@/components/shared/Container";
-import { Facebook, Github, Linkedin } from "lucide-react";
+import { Facebook, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -15,6 +15,12 @@ const Footer = () => {
             </Link>
           </div>
           <div className="flex gap-10 justify-center items-center my-6">
+            <Link href="mailto:foyshalbinamir@gmail.com">
+              <Mail />
+            </Link>
+            <Link href="https://wa.me/8801755288840" target="_blank">
+              <MessageCircle />
+            </Link>
             <Link
               href="https://www.facebook.com/foyshal.binamir.3/"
               target="_blank"

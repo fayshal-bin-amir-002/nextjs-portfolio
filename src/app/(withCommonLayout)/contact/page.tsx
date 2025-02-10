@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import { Facebook, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,10 +16,12 @@ import {
 import { Input } from "@/components/ui/input";
 
 import Container from "@/components/shared/Container";
-import { Card } from "@/components/ui/card";
+import { Card, CardFooter } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { createContact } from "@/actions/createContact";
 import { toast } from "sonner";
+import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, {
@@ -117,6 +119,35 @@ const ContactPage = () => {
               <Button type="submit">Submit</Button>
             </form>
           </Form>
+          <Separator className="my-6" />
+          <CardFooter className="p-0">
+            <div className="flex md:gap-10 justify-between w-full md:justify-center items-center">
+              <Link href="mailto:foyshalbinamir@gmail.com">
+                <Mail />
+              </Link>
+              <Link href="https://wa.me/8801755288840" target="_blank">
+                <MessageCircle />
+              </Link>
+              <Link
+                href="https://www.facebook.com/foyshal.binamir.3/"
+                target="_blank"
+              >
+                <Facebook />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/fayshal-bin-amir/"
+                target="_blank"
+              >
+                <Linkedin />
+              </Link>
+              <Link
+                href="https://github.com/fayshal-bin-amir-002"
+                target="_blank"
+              >
+                <Github />
+              </Link>
+            </div>
+          </CardFooter>
         </Card>
       </div>
     </Container>
