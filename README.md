@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fayshal Bin Amir | Web Developer Portfolio
 
-## Getting Started
+Welcome to the portfolio website of **Fayshal Bin Amir**, a passionate **Web Developer** specializing in building dynamic and responsive websites using modern technologies like **React**, **Next.js**, and **Tailwind CSS**. This website showcases my skills, projects, and achievements in web development.
 
-First, run the development server:
+## 🚀 Live Link
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+You can view the live version of my portfolio at:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[**Live Portfolio**](https://fayshaldev-portfolio.vercel.app)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧩 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Responsive Design**: The website is fully responsive, offering an optimal viewing experience across desktops, tablets, and smartphones.
+- **Featured Projects**: A section that showcases my key projects, including their description, technologies used, and live links.
+- **Interactive Animations**: Smooth animations powered by **Framer Motion** and **Tailwind CSS** for a modern user experience.
+- **Blog Section**: A dynamic blog section to share my thoughts on web development and industry trends.
+- **Contact Form**: A contact form where visitors can easily get in touch for potential collaborations or inquiries.
+- **Dark/Light Mode**: Toggle between dark and light themes for better accessibility, powered by **next-themes**.
 
-## Learn More
+## 💻 Technologies
 
-To learn more about Next.js, take a look at the following resources:
+This portfolio project is built using the following technologies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  - **React** - JavaScript library for building user interfaces.
+  - **Next.js** - React framework for server-side rendering and static site generation.
+  - **Tailwind CSS** - Utility-first CSS framework for fast UI development.
+  - **Framer Motion** - Animation library to add smooth transitions and animations.
+  - **Next-Auth** - Authentication library for secure login functionality.
+  - **React Hook Form** - A library for handling forms efficiently.
+  - **Lucide-React** - A set of open-source icons for React.
+  - **React Markdown** - To render markdown content in blog posts.
 
-## Deploy on Vercel
+- **Backend** (optional, for certain features):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  - **Node.js** and **Express.js** for backend server-side logic (if applicable).
+  - **Mongodb** A powerful, flexible NoSQL database to store and manage data efficiently.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Utilities**:
+  - **Zod** for schema validation and type checking.
+  - **Date-fns** for working with dates.
+  - **Tailwind-merge** for resolving Tailwind CSS conflicts.
+  - **Sonner** for notifications.
