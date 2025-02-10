@@ -10,7 +10,9 @@ import {
 import { TContact } from "@/types/message.type";
 
 const ContactMessagePage = async () => {
-  const res = await fetch("http://localhost:3500/api/contact");
+  const res = await fetch(
+    "https://blog-website-backend-rho.vercel.app/api/contact"
+  );
   const data = await res.json();
   const messages = data?.data || [];
 

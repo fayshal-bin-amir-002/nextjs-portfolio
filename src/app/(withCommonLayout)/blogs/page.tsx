@@ -1,9 +1,20 @@
 import BlogCard from "@/components/home/blog/BlogCard";
 import Container from "@/components/shared/Container";
 import { TBlog } from "@/types/blog.type";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Fayshal Bin Amir | Web Developer",
+  description:
+    "Portfolio of Fayshal Bin Amir, a passionate web developer skilled in React, Redux, TypeScript, NodeJs, ExpressJs, Mongodb, Mongoose and modern web technologies.",
+  keywords:
+    "Fayshal Bin Amir, Web Developer, React, Redux, TypeScript, NodeJs, ExpressJs, Mongodb, Mongoose, MERN, Full Stack, Portfolio",
+};
 
 const BlogsPage = async () => {
-  const res = await fetch("http://localhost:3500/api/blogs");
+  const res = await fetch(
+    "https://blog-website-backend-rho.vercel.app/api/blogs"
+  );
   const data = await res.json();
   const blogs = data?.data || [];
 

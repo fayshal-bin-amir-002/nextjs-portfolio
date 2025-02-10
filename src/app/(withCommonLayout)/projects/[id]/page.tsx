@@ -16,7 +16,9 @@ const ProjectDetailsPage = async ({
 }) => {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:3500/api/project/${id}`);
+  const res = await fetch(
+    `https://blog-website-backend-rho.vercel.app/api/project/${id}`
+  );
   const data = await res.json();
 
   const project = (data?.data as TProject) || {};

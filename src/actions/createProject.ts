@@ -14,13 +14,16 @@ type TProject = {
 };
 
 export const createProject = async (data: TProject) => {
-  const res = await fetch("http://localhost:3500/api/project", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  const res = await fetch(
+    "https://blog-website-backend-rho.vercel.app/api/project",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   return await res.json();
 };

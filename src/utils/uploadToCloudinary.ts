@@ -10,7 +10,7 @@ export const uploadToCloudinary = async (
   formData.append("upload_preset", "ImageUpload"); // Replace with your preset
 
   const response = await fetch(
-    "https://api.cloudinary.com/v1_1/dogemgxf1/image/upload",
+    `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`,
     {
       method: "POST",
       body: formData,

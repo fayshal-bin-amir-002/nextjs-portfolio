@@ -14,7 +14,9 @@ import { FilePlus, Trash2 } from "lucide-react";
 import Link from "next/link";
 
 const BlogManagement = async () => {
-  const res = await fetch("http://localhost:3500/api/blogs");
+  const res = await fetch(
+    "https://blog-website-backend-rho.vercel.app/api/blogs"
+  );
   const data = await res.json();
   const blogs = (data?.data as TBlog[]) || [];
 

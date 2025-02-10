@@ -12,7 +12,9 @@ const BlogDetailsPage = async ({
 }) => {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:3500/api/blogs/${id}`);
+  const res = await fetch(
+    `https://blog-website-backend-rho.vercel.app/api/blogs/${id}`
+  );
   const data = await res.json();
 
   const blog = (data?.data as TBlog) || {};

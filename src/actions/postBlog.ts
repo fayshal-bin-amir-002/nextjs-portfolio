@@ -8,13 +8,16 @@ type TBlog = {
 };
 
 export const postBlog = async (data: TBlog) => {
-  const res = await fetch("http://localhost:3500/api/blogs", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  const res = await fetch(
+    "https://blog-website-backend-rho.vercel.app/api/blogs",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   return await res.json();
 };
