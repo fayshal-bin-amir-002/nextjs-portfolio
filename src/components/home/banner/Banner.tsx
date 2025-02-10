@@ -41,7 +41,7 @@ const Banner = () => {
           <Button
             size={"lg"}
             variant={"outline"}
-            className="hover:scale-105 duration-300 ease-in-out"
+            className="hover:scale-95 duration-300 ease-in-out"
           >
             View Resume
           </Button>
