@@ -40,7 +40,7 @@ const NavBar = ({ session }: { session: UserProps | null }) => {
   const pathname = usePathname();
 
   return (
-    <nav className="py-4 border-b border-main-light sticky top-0 z-50 bg-white dark:bg-black">
+    <nav className="py-4 border-b w-full border-main-light sticky top-0 left-0 right-0 z-50 bg-white dark:bg-black">
       <Container>
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center gap-4">

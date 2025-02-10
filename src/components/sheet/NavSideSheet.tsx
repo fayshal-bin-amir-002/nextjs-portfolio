@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sheet,
   SheetContent,
@@ -13,16 +15,16 @@ import Link from "next/link";
 const NavSideSheet = () => {
   return (
     <Sheet key={"left"}>
-      <SheetTrigger className="p-0 m-0">
+      <SheetTrigger asChild>
         <Menu color="#A78BFA" size={28} />
       </SheetTrigger>
-      <SheetContent side={"left"}>
+      <SheetContent side={"left"} className="w-[300px]">
         <SheetHeader>
           <SheetTitle></SheetTitle>
           <SheetDescription></SheetDescription>
         </SheetHeader>
         {/* Add your navigation links here */}
-        <div className="flex min-w-fit flex-col gap-4 overflow-hidden px-10 ">
+        <div className="flex flex-col gap-4 overflow-hidden px-10">
           {navLinks.map((item, index) => (
             <Link key={index} href={item.href}>
               <div className="group flex items-center gap-2">
