@@ -17,7 +17,7 @@ const ProjectDetailsPage = async ({
   const { id } = await params;
 
   const res = await fetch(
-    `https://blog-website-backend-rho.vercel.app/api/project/${id}`
+    `https://nextjs-portfolio-backend.vercel.app/api/project/${id}`
   );
   const data = await res.json();
 
@@ -25,7 +25,7 @@ const ProjectDetailsPage = async ({
 
   return (
     <Container>
-      <div className="my-10 lg:my-16">
+      <div className="py-10 lg:py-16">
         <div className="flex flex-col sm:flex-row overflow-hidden bg-gray-600 rounded-lg shadow-lg shadow-main-light dark:bg-gray-800 p-2">
           <div className="rounded-lg p-2 lg:w-1/2 bg-white">
             <Image

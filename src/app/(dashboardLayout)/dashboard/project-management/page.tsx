@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const ProjectManagementPage = async () => {
   const res = await fetch(
-    "https://blog-website-backend-rho.vercel.app/api/project"
+    "https://nextjs-portfolio-backend.vercel.app/api/project"
   );
   const data = await res.json();
   const projects = (data?.data as TProject[]) || [];

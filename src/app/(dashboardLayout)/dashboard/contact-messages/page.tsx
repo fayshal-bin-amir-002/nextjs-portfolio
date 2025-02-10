@@ -11,7 +11,7 @@ import { TContact } from "@/types/message.type";
 
 const ContactMessagePage = async () => {
   const res = await fetch(
-    "https://blog-website-backend-rho.vercel.app/api/contact"
+    "https://nextjs-portfolio-backend.vercel.app/api/contact"
   );
   const data = await res.json();
   const messages = data?.data || [];

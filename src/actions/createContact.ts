@@ -6,7 +6,7 @@ export const createContact = async (data: {
   message: string;
 }) => {
   const res = await fetch(
-    "https://blog-website-backend-rho.vercel.app/api/contact",
+    "https://nextjs-portfolio-backend.vercel.app/api/contact",
     {
       method: "POST",
       headers: {

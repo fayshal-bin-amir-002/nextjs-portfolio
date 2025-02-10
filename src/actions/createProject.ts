@@ -15,7 +15,7 @@ type TProject = {
 
 export const createProject = async (data: TProject) => {
   const res = await fetch(
-    "https://blog-website-backend-rho.vercel.app/api/project",
+    "https://nextjs-portfolio-backend.vercel.app/api/project",
     {
       method: "POST",
       headers: {

@@ -13,7 +13,7 @@ export type TFeaturedProject = {
 
 const FeaturedProjects = async () => {
   const res = await fetch(
-    "https://blog-website-backend-rho.vercel.app/api/project/featured-projects"
+    "https://nextjs-portfolio-backend.vercel.app/api/project/featured-projects"
   );
   const data = await res.json();
   const featuredProjects = data?.data || ([] as TFeaturedProject[]);
@@ -21,7 +21,7 @@ const FeaturedProjects = async () => {
   return (
     <div className="my-10 md:my-16 lg:my-20">
       <SectionTitle title="Featured Projects" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-hidden">
         {featuredProjects?.map((project: TFeaturedProject, i: number) => (
           <FeaturedProjectCard key={project?._id} project={project} index={i} />
         ))}

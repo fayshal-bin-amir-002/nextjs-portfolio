@@ -13,7 +13,7 @@ const BlogDetailsPage = async ({
   const { id } = await params;
 
   const res = await fetch(
-    `https://blog-website-backend-rho.vercel.app/api/blogs/${id}`
+    `https://nextjs-portfolio-backend.vercel.app/api/blogs/${id}`
   );
   const data = await res.json();
 

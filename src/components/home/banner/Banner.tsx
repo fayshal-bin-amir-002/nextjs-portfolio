@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between items-center gap-8 my-10 md:my-16 lg:my-20">
+    <div className="flex flex-col lg:flex-row justify-between items-center gap-8 my-10 md:my-16 lg:my-20 overflow-hidden">
       {/* text side */}
       <motion.div
         initial={{ x: -100, opacity: 0 }}

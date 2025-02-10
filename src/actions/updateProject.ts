@@ -15,7 +15,7 @@ type TProject = {
 
 export const updateProject = async (id: string, data: TProject) => {
   const res = await fetch(
-    `https://blog-website-backend-rho.vercel.app/api/project/${id}`,
+    `https://nextjs-portfolio-backend.vercel.app/api/project/${id}`,
     {
       method: "PATCH",
       headers: {

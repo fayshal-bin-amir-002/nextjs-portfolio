@@ -74,7 +74,7 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
     const payload = {
       ...data,
       image: img || project?.image,
-      technologies,
+      technologies: technologies || project?.technologies,
     };
 
     // console.log(payload);

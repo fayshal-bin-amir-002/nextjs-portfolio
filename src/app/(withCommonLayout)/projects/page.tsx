@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const ProjectsPage = async () => {
   const res = await fetch(
-    "https://blog-website-backend-rho.vercel.app/api/project"
+    "https://nextjs-portfolio-backend.vercel.app/api/project"
   );
   const data = await res.json();
 

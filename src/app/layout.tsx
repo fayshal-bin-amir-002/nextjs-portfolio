@@ -7,7 +7,7 @@ import { Toaster } from "sonner";
 export const metadata: Metadata = {
   title: "Fayshal Bin Amir | Web Developer",
   description:
-    "Portfolio of Fayshal Bin Amir, a passionate web developer skilled in React, Redux, TypeScript, NodeJs, ExpressJs, Mongodb, Mongoose and modern web technologies.",
+    "Portfolio of Fayshal Bin Amir, a passionate web developer skilled in NextJS, React, Redux, TypeScript, NodeJs, ExpressJs, Mongodb, Mongoose and modern web technologies.",
   keywords:
     "Fayshal Bin Amir, Web Developer, React, Redux, TypeScript, NodeJs, ExpressJs, Mongodb, Mongoose, MERN, Full Stack, Portfolio",
 };

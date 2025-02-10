@@ -9,7 +9,7 @@ type TBlog = {
 
 export const postBlog = async (data: TBlog) => {
   const res = await fetch(
-    "https://blog-website-backend-rho.vercel.app/api/blogs",
+    "https://nextjs-portfolio-backend.vercel.app/api/blogs",
     {
       method: "POST",
       headers: {

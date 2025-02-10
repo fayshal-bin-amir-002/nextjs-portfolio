@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TProject } from "@/types/project.type";
@@ -5,8 +7,35 @@ import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import UpdateProjectModal from "./UpdateProjectModal";
+import Swal from "sweetalert2";
+import { deleteProject } from "@/actions/deleteProject";
+import { useRouter } from "next/navigation";
 
 const ProjectCard = ({ project }: { project: TProject }) => {
+  const router = useRouter();
+
+  const handleDeleteProject = async (id: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await deleteProject(id);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your project has been deleted.",
+          icon: "success",
+        });
+        router.push("/dashboard/project-management");
+      }
+    });
+  };
+
   return (
     <div className="flex flex-col overflow-hidden bg-white rounded shadow-md sm:flex-row text-slate-500 shadow-main-light relative gap-6 h-full">
       <figure className="w-full lg:w-1/3">
@@ -89,7 +118,11 @@ const ProjectCard = ({ project }: { project: TProject }) => {
       </div>
       <div className="flex flex-col gap-2 absolute right-1 top-1">
         <UpdateProjectModal project={project} />
-        <Button size={"icon"} className="bg-red-500">
+        <Button
+          onClick={() => handleDeleteProject(project?._id)}
+          size={"icon"}
+          className="bg-red-500"
+        >
           <Trash2 color="white" strokeWidth={3} />
         </Button>
       </div>
