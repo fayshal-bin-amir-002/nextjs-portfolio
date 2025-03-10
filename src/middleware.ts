@@ -18,7 +18,7 @@ export const middleware = async (request: NextRequest) => {
     } else {
       return NextResponse.redirect(
         new URL(
-          `http://localhost:3000/login?redirectPath=${pathname}`,
+          `https://fayshal-dev-portfolio.vercel.app/login?redirectPath=${pathname}`,
           request.url
         )
       );
