@@ -8,16 +8,20 @@ type TBlog = {
 };
 
 export const updateBlog = async (id: string, data: TBlog) => {
-  const res = await fetch(
-    `https://nextjs-portfolio-backend.vercel.app/api/blogs/${id}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  );
+  try {
+    const res = await fetch(
+      `https://nextjs-portfolio-backend.vercel.app/api/blogs/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
-  return await res.json();
+    return await res.json();
+  } catch (err: any) {
+    throw new Error(err?.message);
+  }
 };

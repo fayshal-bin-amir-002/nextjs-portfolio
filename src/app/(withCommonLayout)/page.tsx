@@ -1,5 +1,7 @@
 import Banner from "@/components/home/banner/Banner";
+import Education from "@/components/home/education";
 import FeaturedProjects from "@/components/home/featuredProjects/FeaturedProjects";
+import ServiceSection from "@/components/home/services";
 import SkillsSection from "@/components/home/skills/SkillsSection";
 import Container from "@/components/shared/Container";
 import { Metadata } from "next";
@@ -18,6 +20,7 @@ export default function Home() {
       <Banner />
       <SkillsSection />
       <FeaturedProjects />
+      <ServiceSection />
     </Container>
   );
 }

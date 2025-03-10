@@ -13,7 +13,10 @@ export type TFeaturedProject = {
 
 const FeaturedProjects = async () => {
   const res = await fetch(
-    "https://nextjs-portfolio-backend.vercel.app/api/project/featured-projects"
+    "https://nextjs-portfolio-backend.vercel.app/api/project/featured-projects",
+    {
+      cache: "force-cache",
+    }
   );
   const data = await res.json();
   const featuredProjects = data?.data || ([] as TFeaturedProject[]);

@@ -19,7 +19,7 @@ const CommonLayout = async ({ children }: { children: ReactNode }) => {
   return (
     <div>
       <NavBar session={session} />
-      <div className="min-h-[75vh]">{children}</div>
+      <div className="min-h-[calc(100vh-145px)]">{children}</div>
       <Footer />
       <BubbleCursor />
     </div>

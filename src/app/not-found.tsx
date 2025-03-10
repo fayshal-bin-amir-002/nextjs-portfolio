@@ -1,30 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const NotFoundPage = () => {
   return (
-    <div className="boxShadow min-h-screen h-full w-full flex flex-col lg:flex-row justify-between items-center lg:w-3/4 mx-auto">
-      <div className="w-full lg:w-1/2">
-        <Image
-          width={500}
-          height={500}
-          src="https://i.ibb.co/HdHH4Pb/Frame-6.png"
-          alt="illustration"
-          className="h-full"
-        />
-      </div>
-
-      <div className="w-full lg:w-1/3">
-        <h1 className="text-[2.5rem] sm:text-[4rem] font-[800] text-main leading-[80px]">
-          OOPS!
-        </h1>
-
-        <h3 className="text-main-medium text-xl">Page Not Found!</h3>
-
-        <Link href="/">
-          <button className="py-3 px-6 sm:px-8 text-[0.9rem] sm:text-[1rem] rounded-full bg-main text-white mt-8">
-            Back to Home
-          </button>
+    <div className="bg-gray-100">
+      <div className="h-screen flex flex-col justify-center items-center">
+        <h1 className="text-8xl font-bold text-gray-800">404</h1>
+        <p className="text-4xl font-medium text-gray-800">Page Not Found</p>
+        <Link href="/" className="mt-4 text-xl text-blue-600 hover:underline">
+          Go back home
         </Link>
       </div>
     </div>

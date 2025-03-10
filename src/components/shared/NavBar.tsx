@@ -32,7 +32,6 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
   { href: "/projects", label: "Projects" },
   { href: "/blogs", label: "Blogs" },
-  { href: "/dashboard", label: "Dashboard" },
 ];
 
 const NavBar = ({ session }: { session: UserProps | null }) => {
@@ -89,7 +88,7 @@ const NavBar = ({ session }: { session: UserProps | null }) => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {session?.user ? (
+              {session?.user && (
                 <Button
                   variant="outline"
                   className="outline-main"
@@ -97,12 +96,6 @@ const NavBar = ({ session }: { session: UserProps | null }) => {
                 >
                   Log Out
                 </Button>
-              ) : (
-                <Link href="/login">
-                  <Button variant="outline" className="outline-main">
-                    Login
-                  </Button>
-                </Link>
               )}
             </div>
           </div>

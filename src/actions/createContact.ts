@@ -5,16 +5,20 @@ export const createContact = async (data: {
   email: string;
   message: string;
 }) => {
-  const res = await fetch(
-    "https://nextjs-portfolio-backend.vercel.app/api/contact",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  );
+  try {
+    const res = await fetch(
+      "https://nextjs-portfolio-backend.vercel.app/api/contact",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
-  return await res.json();
+    return await res.json();
+  } catch (err: any) {
+    throw new Error(err?.message);
+  }
 };

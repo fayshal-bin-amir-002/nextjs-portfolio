@@ -7,8 +7,6 @@ import {
 import NavMain from "./NavMain";
 import NavUser from "./NavUser";
 import { FolderKanban, House, LayoutDashboard, Mail, Rss } from "lucide-react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/utils/authOptions";
 
 const sidebarItems = [
   {
@@ -41,15 +39,13 @@ const sidebarItems = [
 const AppSidebar = async ({
   ...props
 }: React.ComponentProps<typeof Sidebar>) => {
-  const session = await getServerSession(authOptions);
-
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarContent>
         <NavMain items={sidebarItems} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser session={session} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
