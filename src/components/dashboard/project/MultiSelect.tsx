@@ -18,6 +18,7 @@ export const technologies = [
   "TypeScript",
   "ShadCN",
   "Ant Design",
+  "Socket IO",
 ];
 
 type TechnologyOption = {

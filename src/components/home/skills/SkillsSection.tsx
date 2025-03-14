@@ -53,6 +53,11 @@ const SkillsSection = () => {
     { name: "Firebase", image: "https://i.postimg.cc/3xQZ79qn/firebase.png" },
     { name: "JWT", image: "https://i.postimg.cc/BvQ79M8R/jwt.png" },
     { name: "C++", image: "https://i.postimg.cc/0jQJ9KGk/icons8-c-100.png" },
+    {
+      name: "Socket IO",
+      image:
+        "https://i.postimg.cc/WzkN1xDH/socket-io-icon-2048x2046-x4s9czee.png",
+    },
   ];
 
   return (
