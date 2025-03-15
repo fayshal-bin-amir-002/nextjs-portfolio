@@ -24,7 +24,6 @@ import MultiSelect from "@/components/dashboard/project/MultiSelect";
 import { Loader2, X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { createProject } from "@/actions/createProject";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TProject } from "@/types/project.type";

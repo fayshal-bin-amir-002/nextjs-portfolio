@@ -1,5 +1,4 @@
 import Banner from "@/components/home/banner/Banner";
-import Education from "@/components/home/education";
 import FeaturedProjects from "@/components/home/featuredProjects/FeaturedProjects";
 import ServiceSection from "@/components/home/services";
 import SkillsSection from "@/components/home/skills/SkillsSection";

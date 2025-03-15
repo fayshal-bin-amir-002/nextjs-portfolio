@@ -17,7 +17,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
-import { TBlog } from "@/types/blog.type";
 import { Loader2 } from "lucide-react";
 import { postBlog } from "@/service/blog";
 
