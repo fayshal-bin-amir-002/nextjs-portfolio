@@ -23,9 +23,6 @@ export const getAllBlogs = async () => {
 export const getABlog = async (id: string) => {
   try {
     const res = await fetch(`${process.env.BASE_URL}/blogs/${id}`, {
-      next: {
-        tags: ["Blog", id],
-      },
       cache: "force-cache",
     });
     const data = await res.json();
@@ -63,6 +60,24 @@ export const deleteBlog = async (id: string) => {
         "Content-Type": "application/json",
       },
     });
+    revalidateTag("Blogs");
+
+    return await res.json();
+  } catch (err: any) {
+    throw new Error(err?.message);
+  }
+};
+
+export const updateBlog = async (id: string, data: FieldValues) => {
+  try {
+    const res = await fetch(`${process.env.BASE_URL}/blogs/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
     revalidateTag("Blogs");
 
     return await res.json();

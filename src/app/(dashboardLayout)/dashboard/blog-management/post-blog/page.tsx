@@ -17,8 +17,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
-import { postBlog } from "@/actions/postBlog";
 import { TBlog } from "@/types/blog.type";
+import { Loader2 } from "lucide-react";
+import { postBlog } from "@/service/blog";
 
 const BlogPostPage = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -32,6 +33,10 @@ const BlogPostPage = () => {
       content: "",
     },
   });
+
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -52,11 +57,13 @@ const BlogPostPage = () => {
       image: img || "",
     };
 
-    await postBlog(payload as TBlog);
-    toast.success("Blog posted successfully.");
-    router.push("/dashboard/blog-management");
-
-    // form.reset();
+    try {
+      const res = await postBlog(payload);
+      toast.success(res?.message);
+      router.push("/dashboard/blog-management");
+    } catch (err: any) {
+      toast.error(err?.message);
+    }
   };
 
   return (
@@ -130,7 +137,10 @@ const BlogPostPage = () => {
                 )}
               />
             </div>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {" "}
+              {isSubmitting && <Loader2 className="animate-spin" />}Submit
+            </Button>
           </form>
         </Form>
       </CardContent>

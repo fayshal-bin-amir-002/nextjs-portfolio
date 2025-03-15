@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FilePenLine } from "lucide-react";
+import { FilePenLine, Loader2 } from "lucide-react";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import {
@@ -28,7 +28,7 @@ import { ChangeEvent, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { updateBlog } from "@/actions/updateBlog";
+import { updateBlog } from "@/service/blog";
 
 const BlogEditModal = ({ blog }: { blog: TBlog }) => {
   const [open, setOpen] = useState(false);
@@ -46,6 +46,10 @@ const BlogEditModal = ({ blog }: { blog: TBlog }) => {
     },
   });
 
+  const {
+    formState: { isSubmitting },
+  } = form;
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
@@ -53,22 +57,27 @@ const BlogEditModal = ({ blog }: { blog: TBlog }) => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const img = await uploadToCloudinary(file as File);
+    let img = blog?.image;
+    if (file && file !== null) {
+      img = (await uploadToCloudinary(file as File)) as string;
+    }
 
     const payload = {
       ...data,
-      image: img || blog?.image,
+      image: img,
     };
 
-    // console.log(payload);
+    try {
+      const res = await updateBlog(blog?._id, payload);
 
-    await updateBlog(blog?._id, payload);
+      toast.success(res?.message);
+      router.push("/dashboard/blog-management");
+      setOpen(false);
 
-    toast.success("Blog updated successfully.");
-    router.push("/dashboard/blog-management");
-    setOpen(false);
-
-    form.reset();
+      form.reset();
+    } catch (err: any) {
+      toast.error(err?.message);
+    }
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -153,7 +162,9 @@ const BlogEditModal = ({ blog }: { blog: TBlog }) => {
                   )}
                 />
               </div>
-              <Button type="submit">Submit</Button>
+              <Button type="submit">
+                {isSubmitting && <Loader2 className="animate-spin" />} Update
+              </Button>
             </form>
           </Form>
         </div>

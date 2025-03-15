@@ -1,17 +1,14 @@
 import BlogsTable from "@/components/dashboard/blog/BlogsTable";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { getAllBlogs } from "@/service/blog";
 
 import { TBlog } from "@/types/blog.type";
 import { FilePlus } from "lucide-react";
 import Link from "next/link";
 
 const BlogManagement = async () => {
-  const res = await fetch(
-    "https://nextjs-portfolio-backend.vercel.app/api/blogs"
-  );
-  const data = await res.json();
-  const blogs = (data?.data as TBlog[]) || [];
+  const blogs = ((await getAllBlogs()) as TBlog[]) || [];
 
   return (
     <div>

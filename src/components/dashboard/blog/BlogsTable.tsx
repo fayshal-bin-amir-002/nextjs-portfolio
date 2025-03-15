@@ -13,7 +13,7 @@ import BlogEditModal from "@/components/dashboard/blog/BlogEditModal";
 import { Trash2 } from "lucide-react";
 import Swal from "sweetalert2";
 import { Button } from "@/components/ui/button";
-import { deleteBlog } from "@/actions/deleteBlog";
+import { deleteBlog } from "@/service/blog";
 
 const BlogsTable = ({ blogs }: { blogs: TBlog[] }) => {
   const handleDeleteBlog = async (id: string) => {
@@ -27,12 +27,20 @@ const BlogsTable = ({ blogs }: { blogs: TBlog[] }) => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await deleteBlog(id);
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your blog has been deleted.",
-          icon: "success",
-        });
+        try {
+          const res = await deleteBlog(id);
+          Swal.fire({
+            title: "Deleted!",
+            text: res?.message,
+            icon: "success",
+          });
+        } catch (err: any) {
+          Swal.fire({
+            title: "Error!",
+            text: err?.message,
+            icon: "error",
+          });
+        }
       }
     });
   };
