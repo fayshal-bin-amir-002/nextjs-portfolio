@@ -23,10 +23,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Card, CardFooter } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { createContact } from "@/actions/createContact";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import { createContact } from "@/service/contact";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, {
@@ -56,11 +56,15 @@ const ContactForm = () => {
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
-      await createContact(data);
-      toast.success("Message sent successfully!");
-      form.reset();
-    } catch (err) {
-      toast.error("Failed to send message!");
+      const res = await createContact(data);
+      if (res?.success) {
+        toast.success(res?.message);
+        form.reset();
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (err: any) {
+      toast.error(err?.message);
     }
   }
   return (

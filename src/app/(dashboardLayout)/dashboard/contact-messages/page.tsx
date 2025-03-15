@@ -7,14 +7,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getAllContactMessages } from "@/service/contact";
 import { TContact } from "@/types/message.type";
 
 const ContactMessagePage = async () => {
-  const res = await fetch(
-    "https://nextjs-portfolio-backend.vercel.app/api/contact"
-  );
-  const data = await res.json();
-  const messages = data?.data || [];
+  const messages = ((await getAllContactMessages())?.data as TContact[]) || [];
 
   return (
     <Card className="mt-6">
@@ -30,7 +27,7 @@ const ContactMessagePage = async () => {
           </TableHeader>
           <TableBody>
             {messages &&
-              messages.map((message: TContact) => (
+              messages?.map((message: TContact) => (
                 <TableRow
                   key={message?._id}
                   className="md:table-row flex flex-col border-b"
