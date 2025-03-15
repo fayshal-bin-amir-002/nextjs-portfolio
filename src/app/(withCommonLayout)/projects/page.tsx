@@ -1,5 +1,7 @@
 import { FocusCards } from "@/components/home/projects/FocusCards";
 import Container from "@/components/shared/Container";
+import { getAllProjects } from "@/service/project";
+import { TProject } from "@/types/project.type";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,12 +13,7 @@ export const metadata: Metadata = {
 };
 
 const ProjectsPage = async () => {
-  const res = await fetch(
-    "https://nextjs-portfolio-backend.vercel.app/api/project"
-  );
-  const data = await res.json();
-
-  const projects = data?.data || [];
+  const projects = ((await getAllProjects()) as TProject[]) || [];
 
   return (
     <Container>

@@ -4,7 +4,7 @@ import { getAllBlogs } from "@/service/blog";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fayshal Bin Amir | Web Developer",
+  title: "Fayshal Bin Amir | Web Developer | Blogs",
   description:
     "Portfolio of Fayshal Bin Amir, a passionate web developer skilled in React, Redux, TypeScript, NodeJs, ExpressJs, Mongodb, Mongoose and modern web technologies.",
   keywords:

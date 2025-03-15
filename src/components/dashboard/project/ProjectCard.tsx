@@ -8,12 +8,9 @@ import Image from "next/image";
 import Link from "next/link";
 import UpdateProjectModal from "./UpdateProjectModal";
 import Swal from "sweetalert2";
-import { deleteProject } from "@/actions/deleteProject";
-import { useRouter } from "next/navigation";
+import { deleteProject } from "@/service/project";
 
 const ProjectCard = ({ project }: { project: TProject }) => {
-  const router = useRouter();
-
   const handleDeleteProject = async (id: string) => {
     Swal.fire({
       title: "Are you sure?",
@@ -25,13 +22,28 @@ const ProjectCard = ({ project }: { project: TProject }) => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await deleteProject(id);
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your project has been deleted.",
-          icon: "success",
-        });
-        router.push("/dashboard/project-management");
+        try {
+          const res = await deleteProject(id);
+          if (res?.success) {
+            Swal.fire({
+              title: "Deleted!",
+              text: res?.message,
+              icon: "success",
+            });
+          } else {
+            Swal.fire({
+              title: "Error!",
+              text: res?.message,
+              icon: "error",
+            });
+          }
+        } catch (err: any) {
+          Swal.fire({
+            title: "Error!",
+            text: err?.message,
+            icon: "error",
+          });
+        }
       }
     });
   };

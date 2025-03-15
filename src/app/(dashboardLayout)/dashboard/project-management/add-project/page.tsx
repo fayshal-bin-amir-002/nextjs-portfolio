@@ -21,13 +21,14 @@ import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
 import { ChangeEvent, useState } from "react";
 
 import MultiSelect from "@/components/dashboard/project/MultiSelect";
-import { X } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { createProject } from "@/actions/createProject";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TProject } from "@/types/project.type";
+import { postProject } from "@/service/project";
 
 const AddProjectPage = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -50,6 +51,10 @@ const AddProjectPage = () => {
     },
   });
 
+  const {
+    formState: { isSubmitting },
+  } = form;
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
@@ -57,26 +62,30 @@ const AddProjectPage = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const img = await uploadToCloudinary(file as File);
-
-    if (img === null) {
-      toast.error("Failed to upload image.");
+    if (file === null) {
+      toast.error("Please select a image");
       return;
     }
+    try {
+      const img = await uploadToCloudinary(file as File);
 
-    const payload = {
-      ...data,
-      image: img || "",
-      technologies,
-    };
+      const payload = {
+        ...data,
+        image: img || "",
+        technologies,
+      };
 
-    // console.log(payload);
-    await createProject(payload as TProject);
+      const res = await postProject(payload as TProject);
 
-    toast.success("Project added successfully.");
-    router.push("/dashboard/project-management");
-
-    // form.reset();
+      if (res?.success) {
+        toast.success(res?.message);
+        router.push("/dashboard/project-management");
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (err: any) {
+      toast.error(err?.message);
+    }
   };
 
   return (
@@ -281,7 +290,9 @@ const AddProjectPage = () => {
                 )}
               />
             </div>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting && <Loader2 className="animate-spin" />} Submit
+            </Button>
           </form>
         </Form>
       </CardContent>

@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { TProject } from "@/types/project.type";
-import { FilePenLine } from "lucide-react";
+import { FilePenLine, Loader2 } from "lucide-react";
 
 import {
   Controller,
@@ -35,17 +35,14 @@ import MultiSelect from "@/components/dashboard/project/MultiSelect";
 import { X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
-import { updateProject } from "@/actions/updateProject";
+import { updateProject } from "@/service/project";
 
 const UpdateProjectModal = ({ project }: { project: TProject }) => {
   const [open, setOpen] = useState(false);
 
   const [file, setFile] = useState<File | null>(null);
   const [technologies, setTechnologies] = useState<string[]>([]);
-
-  const router = useRouter();
 
   const form = useForm({
     defaultValues: {
@@ -62,6 +59,10 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
     },
   });
 
+  const {
+    formState: { isSubmitting },
+  } = form;
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
@@ -69,22 +70,30 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const img = await uploadToCloudinary(file as File);
+    let img = project?.image;
+    if (file && file !== null) {
+      img = (await uploadToCloudinary(file as File)) as string;
+    }
 
     const payload = {
       ...data,
-      image: img || project?.image,
+      image: img,
       technologies: technologies || project?.technologies,
     };
 
-    // console.log(payload);
-    await updateProject(project?._id, payload);
+    try {
+      const res = await updateProject(project?._id, payload as TProject);
+      if (res?.success) {
+        toast.success(res?.message);
+        setOpen(false);
 
-    toast.success("Project updated successfully.");
-    router.push("/dashboard/project-management");
-    setOpen(false);
-
-    form.reset();
+        form.reset();
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (err: any) {
+      toast.error(err?.message);
+    }
   };
 
   return (
@@ -310,7 +319,9 @@ const UpdateProjectModal = ({ project }: { project: TProject }) => {
                     )}
                   />
                 </div>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting && <Loader2 className="animate-spin" />} Update
+                </Button>
               </form>
             </Form>
           </CardContent>

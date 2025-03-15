@@ -2,6 +2,7 @@ import SectionTitle from "@/components/shared/SectionTitle";
 import FeaturedProjectCard from "./FeaturedProjectCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { getFeaturedProjects } from "@/service/project";
 
 export type TFeaturedProject = {
   _id: string;
@@ -12,14 +13,8 @@ export type TFeaturedProject = {
 };
 
 const FeaturedProjects = async () => {
-  const res = await fetch(
-    "https://nextjs-portfolio-backend.vercel.app/api/project/featured-projects",
-    {
-      cache: "force-cache",
-    }
-  );
-  const data = await res.json();
-  const featuredProjects = data?.data || ([] as TFeaturedProject[]);
+  const featuredProjects =
+    ((await getFeaturedProjects()) as TFeaturedProject[]) || [];
 
   return (
     <div className="my-10 md:my-16 lg:my-20">

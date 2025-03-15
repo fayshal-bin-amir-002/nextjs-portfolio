@@ -1,14 +1,11 @@
 import ProjectCard from "@/components/dashboard/project/ProjectCard";
 import { Button } from "@/components/ui/button";
+import { getAllProjects } from "@/service/project";
 import { TProject } from "@/types/project.type";
 import Link from "next/link";
 
 const ProjectManagementPage = async () => {
-  const res = await fetch(
-    "https://nextjs-portfolio-backend.vercel.app/api/project"
-  );
-  const data = await res.json();
-  const projects = (data?.data as TProject[]) || [];
+  const projects = ((await getAllProjects()) as TProject[]) || [];
 
   return (
     <div>
