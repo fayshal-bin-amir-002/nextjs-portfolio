@@ -1,9 +1,7 @@
 import BubbleCursor from "@/components/animatedCursor/BubbleCursor";
 import Footer from "@/components/home/footer/Footer";
 import NavBar from "@/components/shared/NavBar";
-import { authOptions } from "@/utils/authOptions";
 import { Metadata } from "next";
-import { getServerSession } from "next-auth";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
@@ -14,11 +12,10 @@ export const metadata: Metadata = {
     "Fayshal Bin Amir, Web Developer, React, Redux, TypeScript, NodeJs, ExpressJs, Mongodb, Mongoose, MERN, Full Stack, Portfolio",
 };
 
-const CommonLayout = async ({ children }: { children: ReactNode }) => {
-  const session = await getServerSession(authOptions);
+const CommonLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div>
-      <NavBar session={session} />
+      <NavBar />
       <div className="min-h-[calc(100vh-145px)]">{children}</div>
       <Footer />
       <BubbleCursor />

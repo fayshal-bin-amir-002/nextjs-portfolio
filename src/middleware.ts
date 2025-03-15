@@ -18,7 +18,7 @@ export const middleware = async (request: NextRequest) => {
     } else {
       return NextResponse.redirect(
         new URL(
-          `https://fayshal-dev-portfolio.vercel.app/login?redirectPath=${pathname}`,
+          `http://localhost:3000/login?redirectPath=${pathname}`,
           request.url
         )
       );
@@ -26,7 +26,10 @@ export const middleware = async (request: NextRequest) => {
   }
   if (userInfo?.role && roleBasedPrivateRoutes[userInfo?.role as Role]) {
     const routes = roleBasedPrivateRoutes[userInfo?.role as Role];
-    if (routes.some((route) => pathname.match(route))) {
+    if (
+      routes.some((route) => pathname.match(route)) &&
+      userInfo?.email === "foyshalbinamir@gmail.com"
+    ) {
       return NextResponse.next();
     } else {
       return NextResponse.redirect(new URL(`/`, request.url));

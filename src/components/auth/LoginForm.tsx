@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { loginUser } from "@/service/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string({ required_error: "Email is required" }).trim().min(1, {
@@ -34,6 +35,10 @@ const LoginForm = () => {
       password: "",
     },
   });
+
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   const router = useRouter();
 
@@ -81,7 +86,9 @@ const LoginForm = () => {
           )}
         />
         <div className="text-right">
-          <Button type="submit">Login</Button>
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting && <Loader2 className="animate-spin" />} Login
+          </Button>
         </div>
       </form>
     </Form>
