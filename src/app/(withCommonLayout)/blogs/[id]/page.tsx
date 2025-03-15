@@ -1,5 +1,6 @@
 import Container from "@/components/shared/Container";
 import { Separator } from "@/components/ui/separator";
+import { getABlog } from "@/service/blog";
 import { TBlog } from "@/types/blog.type";
 import Image from "next/image";
 import Markdown from "react-markdown";
@@ -12,12 +13,7 @@ const BlogDetailsPage = async ({
 }) => {
   const { id } = await params;
 
-  const res = await fetch(
-    `https://nextjs-portfolio-backend.vercel.app/api/blogs/${id}`
-  );
-  const data = await res.json();
-
-  const blog = (data?.data as TBlog) || {};
+  const blog = ((await getABlog(id)) as TBlog) || {};
 
   return (
     <Container>

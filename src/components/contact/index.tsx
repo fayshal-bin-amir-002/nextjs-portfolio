@@ -3,7 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Facebook, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
+import {
+  Facebook,
+  Github,
+  Linkedin,
+  Loader2,
+  Mail,
+  MessageCircle,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -42,6 +49,10 @@ const ContactForm = () => {
       message: "",
     },
   });
+
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
@@ -112,7 +123,9 @@ const ContactForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting && <Loader2 className="animate-spin" />} Submit
+          </Button>
         </form>
       </Form>
       <Separator className="my-6" />

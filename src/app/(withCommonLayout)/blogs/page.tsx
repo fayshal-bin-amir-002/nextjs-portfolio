@@ -1,6 +1,6 @@
-import BlogCard from "@/components/home/blog/BlogCard";
+import AllBlogs from "@/components/home/blog";
 import Container from "@/components/shared/Container";
-import { TBlog } from "@/types/blog.type";
+import { getAllBlogs } from "@/service/blog";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,18 +12,11 @@ export const metadata: Metadata = {
 };
 
 const BlogsPage = async () => {
-  const res = await fetch(
-    "https://nextjs-portfolio-backend.vercel.app/api/blogs"
-  );
-  const data = await res.json();
-  const blogs = data?.data || [];
+  const blogs = await getAllBlogs();
 
   return (
     <Container>
-      <div className="py-10 lg:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {blogs &&
-          blogs?.map((blog: TBlog) => <BlogCard key={blog?._id} blog={blog} />)}
-      </div>
+      <AllBlogs blogs={blogs} />
     </Container>
   );
 };
